@@ -23,7 +23,7 @@ class TestFail(Exception):
 
 test_modules = ['mysql_glob.tests.test_mysql_types',
                 'mysql_glob.tests.test_mysql_io',
-                'mysql_glob.tests.test_mysql_gqueries',
+                'mysql_glob.tests.test_mysql_glob',
                 'mysql_glob.tests.test_mysql_grants',
                 'mysql_glob.tests.test_predef_queries']
 

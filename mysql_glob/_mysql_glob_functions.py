@@ -254,7 +254,8 @@ def select_elements(db, table, with_limit=-1, selection=None, where=None):
 def update_element(db, table, with_limit=-1, sets=None, where=None):
     """
     """
-    return execute_only(_UE_QUERY(db, table, where, with_limit, sets), commit=True)
+    return execute_only(_UE_QUERY(db, table, where, with_limit, sets),
+                                  commit=True)
 
 
 def select_optimised(db,
