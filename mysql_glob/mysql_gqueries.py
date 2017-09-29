@@ -24,7 +24,7 @@ from ._predef_queries import (_VERSION,
                               _CHANGE_COLUMN,
                               _SELECT_OPTI)
 
-from ._mysql_types import Mysql_Type
+from .types._mysql_types import Mysql_Type
 
 def _tuplik(e, indexes):
     if len(e) == 1:

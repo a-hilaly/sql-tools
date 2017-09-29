@@ -21,12 +21,12 @@ from mysql_glob.mysql_gqueries import (version,
                                        update_element,
                                        select_optimised)
 
-from mysql_glob._mysql_types import (INT,
-                                     VARCHAR,
-                                     BOOLEAN,
-                                     ENUM,
-                                     JSON,
-                                     TIMESTAMP)
+from mysql_glob.types._mysql_types import (INT,
+                                           VARCHAR,
+                                           BOOLEAN,
+                                           ENUM,
+                                           JSON,
+                                           TIMESTAMP)
 
 db = "TEST_GLOB"
 tb = "GLOB_TABLE"

@@ -1,11 +1,11 @@
-from mysql_glob._mysql_types import (Mysql_Type,
-                                     INT,
-                                     VARCHAR,
-                                     BOOLEAN,
-                                     ENUM,
-                                     JSON,
-                                     TIMESTAMP,
-                                     NotImplementeD)
+from mysql_glob.types._mysql_types import (Mysql_Type,
+                                           INT,
+                                           VARCHAR,
+                                           BOOLEAN,
+                                           ENUM,
+                                           JSON,
+                                           TIMESTAMP,
+                                           NotImplementeD)
 
 
 def test_mysql_type_basics():
