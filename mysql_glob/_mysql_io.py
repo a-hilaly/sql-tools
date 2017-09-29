@@ -32,7 +32,7 @@ def execute_only(*args, commit=False):
     if commit:
         connector.commit()
 
-def execute_and_fetch(*args, commit=False):
+def execute_and_fetch(*args):
     connector = GMSC()
     result = []
     try:
@@ -43,6 +43,4 @@ def execute_and_fetch(*args, commit=False):
         cursor.execute(query)
     for e in cursor:
         result.append(e)
-    if commit:
-        connector.commit()
     return result

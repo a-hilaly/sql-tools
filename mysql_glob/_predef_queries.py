@@ -48,24 +48,6 @@ _AUTOINCR = "ALTER TABLE {0}.{1} AUTO_INCREMENT = {2};"
 
 # Querries constructors
 
-
-def JSON_PYSTR(a, ln=True, dct=False):
-    final = "[{0}]"
-    sample = '"{0}"'
-    res = ""
-    if ln:
-        c = len(a)
-        for e in a:
-            if c < 2:
-                res += sample.format(e)
-            else:
-                res += sample.format(e) + ", "
-            c -= 1
-        return final.format(res)
-    if dct:
-        raise Exception("Not Implemented")
-
-
 def _make_field_line2(a, b, comma=True, new_line=True):
     txt = None
     if "primary_key" in str(a):
