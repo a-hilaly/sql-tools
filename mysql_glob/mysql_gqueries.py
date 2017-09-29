@@ -1,28 +1,28 @@
 from ._mysql_io import (execute_only,
                         execute_and_fetch)
 
-from ._queries import (_VERSION,
-                       _USER,
-                      _USE_DATABASE,
-                      _SHOW_DATABASES,
-                      _CREATE_DATABASE,
-                      _DELETE_DATABASE,
-                      _SHOW_TABLES,
-                      _TABLE_FIELDS,
-                      _CREATE_TABLE,
-                      _SELECT_TABLE,
-                      _USE_DATABASE,
-                      _DELETE_TABLE,
-                      _IE_QUERY,
-                      _DL_QUERY,
-                      _SL_QUERY,
-                      _CT_QUERY,
-                      _UE_QUERY,
-                      _AUTOINCR,
-                      _ADD_COLUMN,
-                      _DELETE_COLUMN,
-                      _CHANGE_COLUMN,
-                      _SELECT_OPTI)
+from ._predef_queries import (_VERSION,
+                              _USER,
+                              _USE_DATABASE,
+                              _SHOW_DATABASES,
+                              _CREATE_DATABASE,
+                              _DELETE_DATABASE,
+                              _SHOW_TABLES,
+                              _TABLE_FIELDS,
+                              _CREATE_TABLE,
+                              _SELECT_TABLE,
+                              _USE_DATABASE,
+                              _DELETE_TABLE,
+                              _IE_QUERY,
+                              _DL_QUERY,
+                              _SL_QUERY,
+                              _CT_QUERY,
+                              _UE_QUERY,
+                              _AUTOINCR,
+                              _ADD_COLUMN,
+                              _DELETE_COLUMN,
+                              _CHANGE_COLUMN,
+                              _SELECT_OPTI)
 
 def _tuplik(e, indexes):
     if len(e) == 1:
@@ -35,8 +35,7 @@ def _tuplik(e, indexes):
 
 def _refetch_filter(indexes):
     """
-    Decorator that treates 2D List and return only raws
-    indexes
+    Matrix (2Dlist) raws [indexes]
     ===================================================
     """
     def wrap_func(func):

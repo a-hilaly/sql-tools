@@ -1,5 +1,8 @@
 import mysql.connector
 
+class BadConnector(Exception):
+    pass
+
 def load_mysql_logs():
     return "localhost", "root", "uehMLMRw"
 
@@ -9,18 +12,14 @@ def load_mysql_connector_conf():
 def configure_mysql_logs():
     pass
 
-def gen_mysql_server_connector():
+def GMSC():
     host, user, password = load_mysql_logs()
     use_pure, raise_on_warnings = load_mysql_connector_conf()
-    c = mysql.connector.connect(host=host,
-                                user=user,
-                                password=password,
-                                use_pure=use_pure,
-                                raise_on_warnings=raise_on_warnings)
-    return c
-
-class BadConnector(Exception):
-    pass
+    connection = mysql.connector.connect(
+        host=host, user=user, password=password,
+        use_pure=use_pure, raise_on_warnings=raise_on_warnings
+    )
+    return connection
 
 def execute_only(*args, commit=False):
     connector = GMSC()

@@ -1,4 +1,7 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Command
+
+class run_tests(Command):
+    pass
 
 setup(
     name='mysql-glob',

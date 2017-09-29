@@ -48,6 +48,7 @@ _AUTOINCR = "ALTER TABLE {0}.{1} AUTO_INCREMENT = {2};"
 
 # Querries constructors
 
+
 def JSON_PYSTR(a, ln=True, dct=False):
     final = "[{0}]"
     sample = '"{0}"'
@@ -63,6 +64,7 @@ def JSON_PYSTR(a, ln=True, dct=False):
         return final.format(res)
     if dct:
         raise Exception("Not Implemented")
+
 
 def _make_field_line2(a, b, comma=True, new_line=True):
     txt = None
@@ -81,6 +83,7 @@ def _make_field_line2(a, b, comma=True, new_line=True):
         return txt.format("\n")
     else:
         return txt.format("")
+
 
 def _CT_QUERY(db=None, table=None, **kwargs):
     # Create Table Query
@@ -111,11 +114,13 @@ def _tuplify_fields_sql(*t):
         c -= 1
     return r.format(temp)
 
+
 def _sg2000_no_troll_pls(*t):
     targs = list(t)
     if len(targs) == 1:
         return "('{0}')".format(targs[0])
     return str(tuple(targs))
+
 
 def _IE_QUERY(db, table, **kwargs):
     # Insert Element Query
