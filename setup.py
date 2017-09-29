@@ -23,7 +23,7 @@ class run_tests(Command):
 
 setup(
     name='mysql-glob',
-    version='0.0.1',
+    version='0.3.7',
     description='null',
     author='null',
     author_email='0@None.null',
