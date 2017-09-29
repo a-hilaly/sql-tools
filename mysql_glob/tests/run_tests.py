@@ -18,6 +18,8 @@ import time
     =======================================================
 """
 
+class TestFail(Exception):
+    pass
 
 test_modules = ['mysql_glob.tests.test_mysql_types',
                 'mysql_glob.tests.test_mysql_io',
@@ -67,6 +69,9 @@ def run_pytests_modules(*test_modules):
     print('[INFO] ... --- end test ---')
     print('       ====> Total runtime : {0} ms'.format(t2 - t1))
     print('       ====> Success rate : {0}  [ {1}/{2} ]'.format(sr, tsuccess, tfunction))
+    # proc test error (for CI)
+    if sr < 100:
+        raise TestFail()
 
 def run_all_tests():
     run_pytests_modules(*test_modules)
