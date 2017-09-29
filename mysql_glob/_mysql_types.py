@@ -16,6 +16,9 @@ TYPES = [('int', 'INT'),
          ('timestamp', 'TIMESTAMP'),
          ('enum', 'ENUM')]
 
+class NotImplementeD(Exception):
+    pass
+
 class Mysql_Type(object):
 
     __slots__ = ['_type', '_init']
@@ -38,7 +41,7 @@ class Mysql_Type(object):
 
     __repr__ = __str__
 
-    classmethod
+    @classmethod
     def decode(cls, obj):
         if not isinstance(obj, cls):
             raise Exception()
@@ -47,11 +50,11 @@ class Mysql_Type(object):
     def _printf(self):
         """
         """
-        raise NotImplemented()
+        raise NotImplementeD()
 
     @staticmethod
     def eval(obj):
-        return obj._printf()
+        return obj.printf
 
     @property
     def printf(self):
@@ -168,7 +171,7 @@ class JSON(Mysql_Type):
             raise Exception()
         v = "{0}".format(self._type)
         if self._default != None:
-            v += "'{0}'".format(self._default.__str__())
+            v += DEFAULT_STR.format(self._default.__str__())
         return v
 
 

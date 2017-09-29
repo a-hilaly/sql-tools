@@ -24,6 +24,8 @@ from ._predef_queries import (_VERSION,
                               _CHANGE_COLUMN,
                               _SELECT_OPTI)
 
+from ._mysql_types import Mysql_Type
+
 def _tuplik(e, indexes):
     if len(e) == 1:
         return e[0]
@@ -46,23 +48,28 @@ def _refetch_filter(indexes):
             ress = []
             for i in res:
                 ress.append(_tuplik(i, indexes))
+            if len(ress) == 1:
+                return ress[0]
             return ress
         return wrap_args
     return wrap_func
 
+
+@_refetch_filter([0])
 def version():
     """
     Return MySQL version
     =======================================================
     """
-    return execute_and_fetch(_VERSION)[0][0]
+    return execute_and_fetch(_VERSION)
 
+@_refetch_filter([0])
 def user():
     """
     Return MySQL user
     =======================================================
     """
-    return execute_and_fetch(_USER)[0][0]
+    return execute_and_fetch(_USER)
 
 
 @_refetch_filter([0])
@@ -71,6 +78,7 @@ def databases():
     Return list of all databases
     """
     return execute_and_fetch(_SHOW_DATABASES)
+
 
 def make_database(dbname):
     """
@@ -84,6 +92,7 @@ def make_database(dbname):
     """
     execute_only(_CREATE_DATABASE.format(dbname))
 
+
 def remove_database(dbname):
     """
     Remove a mysql database
@@ -95,12 +104,14 @@ def remove_database(dbname):
     """
     execute_only(_DELETE_DATABASE.format(dbname))
 
+
 def use_database(dbname): #XXX: Maybe is useless
     """
     Use mysql databases
     execute_only(_USE_DATABASE.format(dbname))
     """
     pass
+
 
 @_refetch_filter([0])
 def tables(dbname):
@@ -115,6 +126,7 @@ def tables(dbname):
     """
     return execute_and_fetch(_SHOW_TABLES.format(dbname))
 
+
 @_refetch_filter([0])
 def table_fields(dbname, table):
     """
@@ -123,6 +135,7 @@ def table_fields(dbname, table):
     """
     return execute_and_fetch(_TABLE_FIELDS.format(dbname, table))
 
+
 def table_fields_data(dbname, table):
     """
     Return a list of table fields ( All data )
@@ -130,12 +143,16 @@ def table_fields_data(dbname, table):
     """
     return execute_and_fetch(_TABLE_FIELDS.format(dbname, table))
 
+
 def add_field(db, table, field_name, field_type):
     """
     Add field to table at db
     =======================================================
     """
+    if isinstance(field_type, Mysql_Type):
+        field_type = Mysql_Type.eval(field_type)
     execute_only(_ADD_COLUMN.format(db, table, field_name, field_type))
+
 
 def remove_field(db, table, field_name):
     """
@@ -144,11 +161,14 @@ def remove_field(db, table, field_name):
     """
     execute_only(_DELETE_COLUMN.format(db, table, field_name))
 
+
 def change_field(db, table, field_name, new_field, field_type):
     """
     Change field in table at db
     =======================================================
     """
+    if isinstance(field_type, Mysql_Type):
+        field_type = field_type.printf
     execute_only(_CHANGE_COLUMN.format(db,
                                        table,
                                        field_name,
@@ -163,7 +183,12 @@ def make_table(db, table, **kwargs):
     >>> from greww.data.mysql import make_table
     >>> make_table("db1", "tb1", id="INT(5)", name="VARCHAR(10)")
     """
-    execute_only(_CT_QUERY(db, table, **kwargs))
+    cp = kwargs
+    for field, _type in kwargs.items():
+        if isinstance(_type, Mysql_Type):
+            cp[field] = Mysql_Type.eval(_type)
+    execute_only(_CT_QUERY(db, table, **cp))
+
 
 def remove_table(db, table):
     """
@@ -171,6 +196,7 @@ def remove_table(db, table):
     =======================================================
     """
     return execute_only(_DELETE_TABLE.format(db, table))
+
 
 def table_content(db, table):
     """
@@ -185,11 +211,13 @@ def table_content(db, table):
     #XXX: uses : `select * from table`
     return execute_and_fetch(_SELECT_TABLE.format(db, table))
 
+
 def table_primary_start(db, table, start):
     """
     Set table starting point for AUTO_INCREMENT PRIMARY Key
     """
     return execute_only(_AUTOINCR.format(db, table, start))
+
 
 def copy_table(db, table, target_table):
     """
@@ -198,12 +226,14 @@ def copy_table(db, table, target_table):
     """
     pass
 
+
 def add_element(db, table, **kwargs):
     """
     add element to table at db
     =======================================================
     """
     return execute_only(_IE_QUERY(db, table, **kwargs), commit=True)
+
 
 def remove_elements(db, table, with_limit=-1, where=None):
     """
@@ -212,6 +242,7 @@ def remove_elements(db, table, with_limit=-1, where=None):
     """
     return execute_only(_DL_QUERY(db, table, where, with_limit), commit=True)
 
+
 def select_elements(db, table, with_limit=-1, selection=None, where=None):
     """
     Select elements that satisfy kwargs from table at db
@@ -219,10 +250,12 @@ def select_elements(db, table, with_limit=-1, selection=None, where=None):
     """
     return execute_and_fetch(_SL_QUERY(db, table, where, with_limit, selection))
 
+
 def update_element(db, table, with_limit=-1, sets=None, where=None):
     """
     """
     return execute_only(_UE_QUERY(db, table, where, with_limit, sets), commit=True)
+
 
 def select_optimised(db,
                      table,

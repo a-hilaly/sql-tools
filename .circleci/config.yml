@@ -1,0 +1,47 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+
+      - image: circleci/python:3.6.1
+      - image: circleci/mysql:5.7
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: venv
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+
+      - run:
+          name: install gcc dependencies
+          command: |
+            sudo apt install gcc
+            sudo apt install protobuf-compiler
+            sudo pip install -r requirements.txt
+            sudo pip install -r cireq.txt
+
+      - run:
+          name: build module
+          command: |
+            sudo python3 setup.py install
+            
+      - run:
+          name: run tests
+          command: |
+            sudo python3 setup.py test
