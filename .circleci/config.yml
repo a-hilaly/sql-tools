@@ -40,8 +40,13 @@ jobs:
           name: build module
           command: |
             sudo python3 setup.py install
-            
+
       - run:
           name: run tests
           command: |
-            sudo python3 setup.py test
+            coverage python3 setup.py test
+
+      - run:
+          name: export coverage
+          command: |
+            codecov
