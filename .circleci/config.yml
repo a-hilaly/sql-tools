@@ -44,7 +44,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            coverage python3 setup.py test
+            coverage run setup.py test
 
       - run:
           name: export coverage
