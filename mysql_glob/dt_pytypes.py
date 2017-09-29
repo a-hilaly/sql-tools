@@ -1,7 +1,7 @@
 class Mysql_Type(object):
     """
     """
-    @classmethod:
+    @classmethod
     def clsname(cls):
         return cls.__class__.__name__
 
