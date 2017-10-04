@@ -15,17 +15,17 @@ import time
              96            /__/  \            69
              69          _(<_   / )_          96
             6969        (__\_\_|_/__)        9696
-    =======================================================
+==============================================================
 """
 
 class TestFail(Exception):
     pass
 
-test_modules = ['mysql_glob.tests.test_mysql_types',
-                'mysql_glob.tests.test_mysql_io',
-                'mysql_glob.tests.test_mysql_glob',
-                'mysql_glob.tests.test_mysql_grants',
-                'mysql_glob.tests.test_predef_queries']
+test_modules = ['mysql_utils.tests.test_mysql_types',
+                'mysql_utils.tests.test_mysql_io',
+                'mysql_utils.tests.test_mysql_queries',
+                'mysql_utils.tests.test_mysql_grants',
+                'mysql_utils.tests.test_predef_queries']
 
 Succeeded_Test = "[ OK ] ... {0} succeeded ES:{1} with a total run time of : {2} ms"
 Failed_Test = "[WARN] ... {0} failed after runing : {1} ms"
@@ -75,3 +75,6 @@ def run_pytests_modules(*test_modules):
 
 def run_all_tests():
     run_pytests_modules(*test_modules)
+
+if __name__ == "__main__":
+    run_all_tests()

@@ -17,7 +17,7 @@ mysql version: 5.7 (JSON support)
 
 | Master | Dev | CodeCov |
 | --- | --- | --- |
-| [![CircleCI](https://circleci.com/gh/A-Hilaly/mysql_glob/tree/master.svg?style=svg&circle-token=7e0f4d185aee87f94eb656276862d74dfc0ce08f)](https://circleci.com/gh/A-Hilaly/mysql_glob/tree/master) | [![CircleCI](https://circleci.com/gh/A-Hilaly/mysql_glob/tree/dev.svg?style=svg&circle-token=7e0f4d185aee87f94eb656276862d74dfc0ce08f)](https://circleci.com/gh/A-Hilaly/mysql_glob/tree/dev) | [![codecov](https://codecov.io/gh/A-Hilaly/mysql_glob/branch/master/graph/badge.svg?token=a24hnSYvBi)](https://codecov.io/gh/A-Hilaly/mysql_glob) |
+| [![CircleCI](https://circleci.com/gh/A-Hilaly/mysql-utils/tree/master.svg?style=svg&circle-token=7e0f4d185aee87f94eb656276862d74dfc0ce08f)](https://circleci.com/gh/A-Hilaly/mysql-utils/tree/master) | [![CircleCI](https://circleci.com/gh/A-Hilaly/mysql-utils/tree/dev.svg?style=svg&circle-token=7e0f4d185aee87f94eb656276862d74dfc0ce08f)](https://circleci.com/gh/A-Hilaly/mysql-utils/tree/dev) | [![codecov](https://codecov.io/gh/A-Hilaly/mysql-utils/branch/master/graph/badge.svg?token=a24hnSYvBi)](https://codecov.io/gh/A-Hilaly/mysql-utils) |
 
 ## Table of content
 
