@@ -4,7 +4,7 @@ class BadConnector(Exception):
     pass
 
 def load_mysql_logs():
-    return "localhost", "root", ""
+    return "localhost", "root", "uehMLMRw"
 
 def load_mysql_connector_conf():
     return True, True

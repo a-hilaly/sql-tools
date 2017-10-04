@@ -22,7 +22,8 @@ from ._predef_queries import (_VERSION,
                               _ADD_COLUMN,
                               _DELETE_COLUMN,
                               _CHANGE_COLUMN,
-                              _SELECT_OPTI)
+                              _SELECT_OPTI,
+)
 
 from .types._mysql_types import Mysql_Type
 
