@@ -1,13 +1,10 @@
-# mysql glob 0.3.7
-
-Mysql Glob is a Python framework containing simple tools and models to administrate mysql server and manage their databases
-
+# Mysql-utils
 
 Requirements :
 
-- Python 3.*
-- mysql-server or client
-
+- Python 3.X
+- Mysql Server &&|| Client
+- Balls
 
 ##### Status
 
@@ -35,14 +32,29 @@ mysql version: 5.7 (JSON support)
 
 ## Examples
 
-Simple functions
+Simple queries:
 
 ```python
->>> from mysql_glob.glob import make_database, show_databases
->>> make_database('db_1')
->>> show_database()
-['mysql', 'sys', 'db_1'] # You might have other databases here
+>>> from mysql_utils.queries import make_database, show_databases
+>>> make_database('asample')
+>>> print(show_databases())
+<<< ['mysql', 'sys', 'asample'] # You might have other databases here
+```
 
+Advanced queries:
+
+```python
+>>> from mysql_utils.models import Database
+>>> Database('mysql', 'asample')
+<<< True, False
+>>> Database('asample').create(force=False)
+>>> Database('asample')
+<<< True, True
+```
+
+Modeled queries:
+
+```
 ```
 
 ## Documentation
