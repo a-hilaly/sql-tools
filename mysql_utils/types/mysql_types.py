@@ -1,4 +1,3 @@
-
 NOT_NULL = " NOT NULL"
 DEFAULT = " DEFAULT {0}"
 DEFAULT_STR = " DEFAULT '{0}'"
@@ -16,8 +15,10 @@ TYPES = [('int', 'INT'),
          ('timestamp', 'TIMESTAMP'),
          ('enum', 'ENUM')]
 
+
 class NotImplementeD(Exception):
     pass
+
 
 class Mysql_Type(object):
 

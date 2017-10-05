@@ -1,4 +1,4 @@
-from mysql_utils._mysql_queries import (
+from mysql_utils.mysql_queries import (
     version,
     user,
     databases,
@@ -23,7 +23,7 @@ from mysql_utils._mysql_queries import (
     select_optimised,
 )
 
-from mysql_utils.types._mysql_types import (
+from mysql_utils.types import (
     INT,
     VARCHAR,
     BOOLEAN,
@@ -34,6 +34,7 @@ from mysql_utils.types._mysql_types import (
 
 db = "TEST_GLOB"
 tb = "GLOB_TABLE"
+
 
 def test_databases():
     _db = databases()
@@ -189,6 +190,7 @@ def test_selections_advanced():
     remove_table(db, tb)
     remove_database(db)
     return 1
+
 
 __all__ = [test_databases,
            test_table_manipulations,

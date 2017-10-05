@@ -1,6 +1,7 @@
 import unittest
 import time
 
+
 """
          69696969                         69696969
        6969    696969                   696969    6969
@@ -15,20 +16,22 @@ import time
              96            /__/  \            69
              69          _(<_   / )_          96
             6969        (__\_\_|_/__)        9696
-==============================================================
 """
+
 
 class TestFail(Exception):
     pass
 
+
 test_modules = ['mysql_utils.tests.test_mysql_types',
-                'mysql_utils.tests.test_mysql_io',
                 'mysql_utils.tests.test_mysql_queries',
-                'mysql_utils.tests.test_mysql_grants',
+                'mysql_utils.tests.test_mysql_loggings',
                 'mysql_utils.tests.test_predef_queries']
+
 
 Succeeded_Test = "[ OK ] ... {0} succeeded ES:{1} with a total run time of : {2} ms"
 Failed_Test = "[WARN] ... {0} failed after runing : {1} ms"
+
 
 def _test_function(func):
     t1 = time.time()
@@ -41,19 +44,23 @@ def _test_function(func):
         print(Failed_Test.format(func.__name__, t2 - t1))
         return False
 
+
 def import_module_tests_functions(module):
     mod = __import__(module, globals(), locals(), [''])
     functions = getattr(mod, '__all__')         #XXX: Python need this usless arguments
     return functions                            # to import all objects in a module
 
+
 def run_pytests_modules(*test_modules):
-    tfunction = 0
-    tsuccess = 0
-    c = None
+    tfunction, tsuccess, c = 0, 0, None
     t1 = time.time()
     for module in test_modules:
         functions = import_module_tests_functions(module)
         print("[INFO] ... Runing {0} tests : [{1} functions]".format(module, len(functions)))
+        if not functions:
+            print("       ====> Skipped [NO FUNCTIONS]")
+            print("")
+            continue
         k1 = time.time()
         for func in functions:
             c = _test_function(func)
@@ -73,8 +80,10 @@ def run_pytests_modules(*test_modules):
     if sr < 100:
         raise TestFail()
 
+
 def run_all_tests():
     run_pytests_modules(*test_modules)
+
 
 if __name__ == "__main__":
     run_all_tests()

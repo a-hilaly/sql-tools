@@ -72,7 +72,8 @@ LOCK_USER = "ALTER USER '{0}'@'{1}' ACCOUNT LOCK;"
 
 GRANT_POWER = "GRANT {0} ON {1}.{2} TO '{3}'@'{4}';"
 REVOKE_POWER = "REVOKE {0} ON {1}.{2} FROM '{3}'@'{4}';"
-USER_RIGHTS = "SHOW GRANTS FOR '{0}'@'{1}';"
+USER_GRANTS = "SHOW GRANTS FOR '{0}'@'{1}';"
+
 
 # Querries constructors
 
@@ -120,7 +121,7 @@ def _IE_QUERY(db, table, **kwargs):
     """
     Insert Element Query
     """
-    kwa = str_listify(*kwargs.keys())
+    kwa = str_listify(*kwargs.keys(), re='`{0}`')
     rgs = tuple_stringify(*list(kwargs.values()))
     return _INSERT_VALUE_WK.format(db, table, kwa, rgs)
 

@@ -1,4 +1,4 @@
-from mysql_utils.types._mysql_types import (
+from mysql_utils.types.mysql_types import (
     Mysql_Type,
     INT,
     VARCHAR,
@@ -69,6 +69,7 @@ def test_mysql_type_max_case():
     assert Mysql_Type.eval(t) == ('TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
                                   ' ON UPDATE CURRENT_TIMESTAMP')
     return 1
+
 
 __all__ = [test_mysql_type_basics,
            test_mysql_types_minimal_kwargs,
