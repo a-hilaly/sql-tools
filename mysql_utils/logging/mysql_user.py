@@ -1,15 +1,17 @@
 from mysql_utils.utils import bin2str
+from mysql_utils.mysql_queries import select_elements
+
 from mysql_utils._predef_queries import (
     ADD_USER,
     DROP_USER,
     LOCK_USER,
     UNLOCK_USER,
 )
+
 from mysql_utils._mysql_io import (
     execute_only,
     execute_and_fetch,
 )
-from mysql_utils.mysql_queries import select_elements
 
 _listify = lambda l : ''.join([str(l[0])] + [', {0}'.format(i) for i in l[1::]])
 
@@ -34,11 +36,16 @@ def users_list(filter_by=['User', 'Host', 'account_locked']):
     """
     s = _listify(filter_by)
     res = select_elements('mysql', 'user', selection=s)
+    if isinstance(res[0][0], str):
+        return res
     _res = []
     _t = []
     for elements in res:
         _t = ()
         for i in elements:
+            if isinstance(i, str):
+                _t += (i, )
+                continue
             _t += (bin2str(i), )
         _res += [_t]
     return _res
