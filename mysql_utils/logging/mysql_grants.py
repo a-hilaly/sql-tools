@@ -33,4 +33,4 @@ def user_grants(user, host):
     """
     Show User grants
     """
-    return execute_and_fetch(USER_RIGHTS.format(user, host))
+    return execute_and_fetch(USER_GRANTS.format(user, host))
