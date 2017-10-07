@@ -105,7 +105,9 @@ def add_field(db, table, field_name, field_type):
     """
     if isinstance(field_type, Mysql_Type):
         field_type = Mysql_Type.eval(field_type)
-    execute_only(_ADD_COLUMN.format(db, table, field_name, field_type))
+    execute_only(
+        _ADD_COLUMN.format(db, table, field_name, field_type)
+    )
 
 
 def remove_field(db, table, field_name):

@@ -67,3 +67,28 @@ def execute_and_fetch(*args, connector=None):
     for e in cursor:
         result.append(e)
     return result
+
+class MySQLConnection(object):
+
+    @staticmethod
+    def _configure(self):
+        pass
+
+    def __init__(self):
+        self.connector = None
+        self.cursor = None
+        self.status = None
+        self.database = None
+        self.user = None
+
+    def connect(self):
+        pass
+
+    def disconnect(self):
+        pass
+
+    def execute(self):
+        pass
+
+    def execute_and_fetch(self):
+        pass
