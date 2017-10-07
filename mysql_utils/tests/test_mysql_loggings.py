@@ -15,35 +15,55 @@ Password = "--"
 
 
 def test_mysql_users_basics():
-    #CREATE USER
+    # init
+    # CREATE USER
     create_user(User, Host, Password)
-    #LIST ALL
+    # LIST ALL
     ln = users_list()
     assert (User, Host, 'N') in ln
-    #REMOVE USER
+    # REMOVE USER
     remove_user(User, Host)
+    # Check
     ln = users_list()
     assert not (User, Host, 'N') in ln
+    return 1
 
 
 def test_mysql_users_locks():
     # init
     create_user(User, Host, Password)
-    #LOCK USER
+    # LOCK USER
     lock_user(User, Host)
-    #LIST ALL
+    # LIST ALL
     ln = users_list()
     assert (User, Host, 'Y') in ln
+    # Unlock User
+    unlock_user(User, Host)
+    assert (User, Host, 'N') in ln
     # Cleanup
     remove_user(User, Host)
+    return 1
 
 
 def test_mysql_users_grants():
-    #GRANTS USER
-    #REVOKE GRANTS
-    #SHOW GRANTS
-    #GRANTS
-    pass
+    # init
+    create_user(User, Host, Password)
+    # SHOW GRANTS
+    grants = user_grants(User, Host)
+    assert grants == "GRANT USAGE ON *.* TO '{0}'@'{1}'".format(User, Host)
+    # SET GRANTS
+    set_user_grants(User, Host, grants="SELECT")
+    grants = user_grants(User, Host)
+    assert grants == "GRANT SELECT ON *.* TO '{0}'@'{1}'".format(User, Host)
+    # REVOKE GRANTS
+    revoke_user_grants(User, Host, 'SELECT')
+    # SHOW GRANTS
+    grants = user_grants(User, Host)
+    assert grants == "GRANT USAGE ON *.* TO '{0}'@'{1}'".format(User, Host)
+    # Cleanup
+    remove_user(User, Host)
+    return 1
+
 
 
 __all__ = [test_mysql_users_basics,

@@ -1,6 +1,6 @@
 from mysql_utils._mysql_io import execute_only, execute_and_fetch
 from mysql_utils._predef_queries import GRANT_POWER, REVOKE_POWER, USER_GRANTS
-
+from mysql_utils.utils import _refetch_filter
 
 def __kwgs(grants=None, on_db=None, on_tb=None):
     g, d, t = grants, on_db, on_tb
@@ -29,6 +29,7 @@ def revoke_user_grants(user, host, grants=None, database=None, table=None):
     execute_only(REVOKE_POWER.format(g, d, t, user, host))
 
 
+@_refetch_filter([0])
 def user_grants(user, host):
     """
     Show User grants
