@@ -55,6 +55,6 @@ setup(
     description='null',
     author='null',
     author_email='0@None.null',
-    cmdclass={'test' : run_tests}
+    cmdclass={'test' : run_tests},
     packages=find_packages(exclude=('tests', 'docs'))
 )
