@@ -56,44 +56,47 @@ def databases():
     return execute_and_fetch(_SHOW_DATABASES)
 
 
-def make_database(dbname):
+def make_database(db):
     """
+    Create database
     """
-    execute_only(_CREATE_DATABASE.format(dbname))
+    execute_only(_CREATE_DATABASE.format(db))
 
 
-def remove_database(dbname):
+def remove_database(db):
     """
+    Drop database
     """
-    execute_only(_DELETE_DATABASE.format(dbname))
+    execute_only(_DELETE_DATABASE.format(db))
 
 
-def use_database(dbname): #XXX: Maybe is useless
+def use_database(db): #XXX: Maybe is useless
     """
+    Use database
     """
     pass
 
 
 @_refetch_filter([0])
-def tables(dbname):
+def tables(db):
     """
     """
-    return execute_and_fetch(_SHOW_TABLES.format(dbname))
+    return execute_and_fetch(_SHOW_TABLES.format(db))
 
 
 @_refetch_filter([0])
-def table_fields(dbname, table):
+def table_fields(db, table):
     """
     Return a list of table fields ( only their names )
     """
-    return execute_and_fetch(_TABLE_FIELDS.format(dbname, table))
+    return execute_and_fetch(_TABLE_FIELDS.format(db, table))
 
 
-def table_fields_data(dbname, table):
+def table_fields_data(db, table):
     """
     Return a list of table fields ( All data )
     """
-    return execute_and_fetch(_TABLE_FIELDS.format(dbname, table))
+    return execute_and_fetch(_TABLE_FIELDS.format(db, table))
 
 
 def add_field(db, table, field_name, field_type):

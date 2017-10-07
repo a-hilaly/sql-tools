@@ -6,7 +6,9 @@ class BadConnector(Exception):
 
 
 def load_mysql_logs():
-    return "192.168.1.79", "amine", "uehMLMRw"
+    #return "192.168.1.79", "amine", "uehMLMRw"
+    #return "localhost", "root", "uehMLMRw"
+    return 'localhost', 'root', ''
 
 
 def load_mysql_connector_conf():
