@@ -14,10 +14,9 @@ def extract_settings(config, o=None):
 
 def conflogs():
     try:
-        MODE = os.environ['CI']
+        ENV = os.environ['CI']
         LOGS = extract_settings('ci')
     except:
-        MODE = 'LOCAL'
         LOGS = extract_settings('local')
     for k in LOGS.keys():
         if LOGS[k] in '01':
