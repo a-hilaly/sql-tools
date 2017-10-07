@@ -31,18 +31,22 @@ test_modules = ['mysql_utils.tests.test_mysql_types',
 
 Succeeded_Test = "[ OK ] ... {0} succeeded ES:{1} with a total run time of : {2} ms"
 Failed_Test = "[WARN] ... {0} failed after runing : {1} ms"
+Skipped_Test = "[SKIP] ... {0} Skipped before running ES:{1} [ {2} ]"
 
 
 def _test_function(func):
     t1 = time.time()
     try:
         exit_status, t2 = func(), time.time()
-        print(Succeeded_Test.format(func.__name__, exit_status, t2 - t1))
+        if isinstance(es, int):
+            print(Succeeded_Test.format(func.__name__, exit_status, t2 - t1))
+        elif isisntance(es, dict):
+            if es['action'] == 'skip':
+                print(Skipped_Test.format(func.__name__, es['exit_status'], es['reason']))
         return True
     except:
         t2 = time.time()
         print(Failed_Test.format(func.__name__, t2 - t1))
-        ex = func()
         return False
 
 
