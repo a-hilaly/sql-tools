@@ -42,8 +42,8 @@ def _test_function(func):
     except:
         t2 = time.time()
         print(Failed_Test.format(func.__name__, t2 - t1))
-        return False
         ex = func()
+        return False
 
 
 def import_module_tests_functions(module):
