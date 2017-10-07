@@ -32,8 +32,8 @@ from mysql_utils.types import (
     TIMESTAMP,
 )
 
-db = "TEST_GLOB"
-tb = "GLOB_TABLE"
+db = "TEST_DB"
+tb = "TEST_TABLE"
 
 
 def test_databases():

@@ -1,7 +1,25 @@
+import os
+import configparser
+from .utils import CONFIG_FULL_PATH
 
 
-class Settings(object):
+def extract_settings(config, o=None):
+    #
+    cfg = configparser.ConfigParser()
+    cfg.read(CONFIG_FULL_PATH)
+    if o:
+        return cfg[config][o]
+    return dict(cfg[config])
 
-    @staticmethod
-    def configure():
-        pass
+
+def conflogs():
+    try:
+        MODE = os.environ['CI']
+        LOGS = extract_settings('ci')
+    except:
+        MODE = 'LOCAL'
+        LOGS = extract_settings('local')
+    for k in LOGS.keys():
+        if LOGS[k] in '01':
+            LOGS[k] = (LOGS[k] == '1')
+    return LOGS

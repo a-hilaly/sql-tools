@@ -2,8 +2,9 @@ import os
 import configparser
 
 MYSQL_UTILS_PATH = os.path.dirname(os.path.abspath(__file__))
-CONFIG_FULL_PATH = "{0}/conf.ini"
-
+CONFIG_FULL_PATH = os.path.join(os.path.dirname(os.path.dirname(
+    __file__)), 'conf.ini'
+)
 
 def str_listify(*a, re=None):
     if not a:
