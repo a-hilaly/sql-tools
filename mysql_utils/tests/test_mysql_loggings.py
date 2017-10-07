@@ -50,9 +50,9 @@ def test_mysql_users_grants():
     # init
     import os
     if 'CI' in list(os.environ.keys()):
-        return {action : 'skip',
-                exit_status: 2,
-                reason : 'CircleCI MYSQL DOESNT ALLOW GRANTS OPTIONS'}
+        return {'action' : 'skip',
+                'exit_status': 2,
+                'reason' : 'CircleCI MYSQL DOESNT ALLOW GRANTS OPTIONS'}
     #
     create_user(User, Host, Password)
     # SHOW GRANTS
