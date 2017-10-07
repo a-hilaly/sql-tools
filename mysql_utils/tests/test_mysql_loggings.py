@@ -9,13 +9,22 @@ from mysql_utils.logging import (
     unlock_user,
 )
 
+User = "TESTUSER"
+Host = "TESTHOST"
+Password = "--"
+
 
 def test_mysql_users_basics():
     #CREATE USER
-    #REMOVE USER
+    create_user(User, Host, Password)
     #LIST ALL
-    pass
-
+    ln = users_list()
+    assert (User, Host, 'N') in ln
+    #REMOVE USER
+    remove_user(User, Host)
+    ln = users_list()
+    assert not (User, Host, 'N') in ln
+    
 
 def test_mysql_users_locks():
     pass

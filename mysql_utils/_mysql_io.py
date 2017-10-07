@@ -17,7 +17,6 @@ def execute_only(*args, commit=False):
     CNX.disconnect()
 
 
-
 def execute_and_fetch(*args, connector=None):
     """
     Excute and fetch results
