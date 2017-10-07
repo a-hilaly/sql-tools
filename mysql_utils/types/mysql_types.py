@@ -80,8 +80,6 @@ class INT(Mysql_Type):
         self._auto_incr = auto_increment
 
     def _printf(self):
-        if not self._init:
-            raise Exception()
         v = "{0}{1}".format(self._type, '({0})'.format(self._size))
         if self._not_null:
             v += NOT_NULL
@@ -104,8 +102,6 @@ class VARCHAR(Mysql_Type):
         self._default = default
 
     def _printf(self):
-        if not self._init:
-            raise Exception()
         v = "{0}{1}".format(self._type, '({0})'.format(self._size))
         if self._not_null:
             v += NOT_NULL
@@ -125,8 +121,6 @@ class BOOLEAN(Mysql_Type):
         self._default = default
 
     def _printf(self):
-        if not self._init:
-            raise Exception()
         v = "{0}".format(self._type)
         if self._not_null:
             v += NOT_NULL
@@ -146,8 +140,6 @@ class ENUM(Mysql_Type):
         self._default = default
 
     def _printf(self):
-        if not self._init:
-            raise Exception()
         v = "{0}".format(self._type)
         v += "({0})".format(_listify(self._enum_ct))
         if self._default:
@@ -168,8 +160,6 @@ class JSON(Mysql_Type):
         self._default = default
 
     def _printf(self):
-        if not self._init:
-            raise Exception()
         v = "{0}".format(self._type)
         if self._default != None:
             v += DEFAULT_STR.format(self._default.__str__())
@@ -187,8 +177,6 @@ class TIMESTAMP(Mysql_Type):
         self._on_update = on_update
 
     def _printf(self):
-        if not self._init:
-            raise Exception()
         v = "{0}".format(self._type)
         if self._default == 'NOW':
             v += DEFAULT.format(CURRENT_TIMESTAMP)

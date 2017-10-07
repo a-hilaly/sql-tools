@@ -1,4 +1,4 @@
-# Mysql-utils
+# Mysql-utils [0.3.8]
 
 Requirements :
 
