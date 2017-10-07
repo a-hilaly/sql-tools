@@ -57,7 +57,7 @@ def test_mysql_users_grants():
     grants = user_grants(User, Host)
     assert grants == "GRANT SELECT ON *.* TO '{0}'@'{1}'".format(User, Host)
     # REVOKE GRANTS
-    revoke_user_grants(User, Host, 'SELECT')
+    revoke_user_grants(User, Host, grants='SELECT')
     # SHOW GRANTS
     grants = user_grants(User, Host)
     assert grants == "GRANT USAGE ON *.* TO '{0}'@'{1}'".format(User, Host)

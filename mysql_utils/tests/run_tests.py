@@ -43,6 +43,7 @@ def _test_function(func):
         t2 = time.time()
         print(Failed_Test.format(func.__name__, t2 - t1))
         return False
+        ex = func()
 
 
 def import_module_tests_functions(module):
