@@ -39,7 +39,7 @@ def _test_function(func):
     try:
         es, t2 = func(), time.time()
         if isinstance(es, int):
-            print(Succeeded_Test.format(func.__name__, exit_status, t2 - t1))
+            print(Succeeded_Test.format(func.__name__, es, t2 - t1))
         elif isinstance(es, dict):
             if es['action'] == 'skip':
                 print(Skipped_Test.format(func.__name__, es['exit_status'], es['reason']))
