@@ -10,7 +10,7 @@ from mysql_utils.logging import (
 )
 
 User = "TESTUSER"
-Host = "TESTHOST"
+Host = "testhost"
 Password = "--"
 
 
@@ -24,10 +24,18 @@ def test_mysql_users_basics():
     remove_user(User, Host)
     ln = users_list()
     assert not (User, Host, 'N') in ln
-    
+
 
 def test_mysql_users_locks():
-    pass
+    # init
+    create_user(User, Host, Password)
+    #LOCK USER
+    lock_user(User, Host)
+    #LIST ALL
+    ln = users_list()
+    assert (User, Host, 'Y') in ln
+    # Cleanup
+    remove_user(User, Host)
 
 
 def test_mysql_users_grants():
