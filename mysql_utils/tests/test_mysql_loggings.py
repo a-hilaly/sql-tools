@@ -39,6 +39,7 @@ def test_mysql_users_locks():
     assert (User, Host, 'Y') in ln
     # Unlock User
     unlock_user(User, Host)
+    ln = users_list()
     assert (User, Host, 'N') in ln
     # Cleanup
     remove_user(User, Host)
@@ -63,7 +64,6 @@ def test_mysql_users_grants():
     # Cleanup
     remove_user(User, Host)
     return 1
-
 
 
 __all__ = [test_mysql_users_basics,
