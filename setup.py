@@ -22,9 +22,9 @@ class run_tests(Command):
         run_all_tests()
 """
 class configure(Command):
-    """
-    Runs all "PYTHON" tests under the
-    """
+
+    #Runs all "PYTHON" tests under the
+
     # distutils complains if this is not here.
     description = "run all tests"
     user_options = [('host', None, 'Set localhost'),
