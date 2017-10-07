@@ -20,7 +20,7 @@ class run_tests(Command):
     def run(self):
         from mysql_utils.tests.run_tests import run_all_tests
         run_all_tests()
-
+"""
 class configure(Command):
     """
     Runs all "PYTHON" tests under the
@@ -47,10 +47,11 @@ class configure(Command):
 
     def run(self):
         print(self.host, self.user, self.password, self.port)
+"""
 
 setup(
     name='mysql-utils',
-    version='0.3.7',
+    version='0.3.8',
     description='null',
     author='null',
     author_email='0@None.null',

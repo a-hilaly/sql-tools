@@ -21,24 +21,6 @@ class MySQLConnection(object):
         # Return MySQL Actual connector's cursor
         return self._connector.cursor()
 
-    @property
-    def isConnected(self):
-        # Return actual connection state (False/True)
-        return self._connected
-
-    @property
-    def status(self):
-        # Return actual connection status (0/1/2)
-        return self._status
-
-    @property
-    def bilan(self):
-        __bilan = dict(
-            zip(self.__slots__, [getattr(self, i) for i in self.__slots__])
-        )
-        for elem, v in __bilan.items():
-            print("{0} : {1}".format(elem, v))
-
     def __init__(self, *args, **kwargs):
         self._host = None
         self._user = None
