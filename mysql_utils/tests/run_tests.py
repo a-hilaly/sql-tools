@@ -37,7 +37,7 @@ Skipped_Test = "[SKIP] ... {0} Skipped before running ES:{1} [ {2} ]"
 def _test_function(func):
     t1 = time.time()
     try:
-        exit_status, t2 = func(), time.time()
+        es, t2 = func(), time.time()
         if isinstance(es, int):
             print(Succeeded_Test.format(func.__name__, exit_status, t2 - t1))
         elif isinstance(es, dict):
