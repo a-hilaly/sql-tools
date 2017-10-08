@@ -4,6 +4,16 @@ from ._mysql_connection import logit
 CNX = logit(**conflogs())
 
 
+def _reconnect(**wlogs):
+    """
+    """
+    if CNX.status:
+        CNX.disconnect
+    if wlogs:
+        CNX.load(**wlogs)
+    CNX.connect(True)
+
+
 def execute_only(*args, commit=False):
     """
     Execute only

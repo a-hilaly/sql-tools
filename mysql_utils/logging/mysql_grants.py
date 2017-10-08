@@ -1,6 +1,11 @@
 from mysql_utils._mysql_io import execute_only, execute_and_fetch
-from mysql_utils._predef_queries import GRANT_POWER, REVOKE_POWER, USER_GRANTS
 from mysql_utils.utils import _refetch_filter
+from mysql_utils._predef_queries import (
+    GRANT_POWER,
+    REVOKE_POWER,
+    USER_GRANTS
+)
+
 
 def __kwgs(grants=None, on_db=None, on_tb=None):
     g, d, t = grants, on_db, on_tb
