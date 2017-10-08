@@ -67,6 +67,8 @@ class MySQLConnection(object):
         self._connected = True
 
     def commit(self):
+        # commit
+
         self._connector.commit()
 
     def disconnect(self):
