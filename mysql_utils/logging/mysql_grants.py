@@ -6,7 +6,6 @@ from mysql_utils._predef_queries import (
     USER_GRANTS
 )
 
-
 def __kwgs(grants=None, on_db=None, on_tb=None):
     g, d, t = grants, on_db, on_tb
     if grants == "*":

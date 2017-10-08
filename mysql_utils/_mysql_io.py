@@ -13,7 +13,6 @@ def _reconnect(**wlogs):
         CNX.load(**wlogs)
     CNX.connect(True)
 
-
 def execute_only(*args, commit=False):
     """
     Execute only

@@ -6,7 +6,6 @@ class UnexpectedArguments(Exception):
             self, "Unexpected number of arguments : {0}".format(args_number)
         )
 
-
 class MySQLConnection(object):
 
     __slots__ = ['_host', '_user', '_password', '_password', '_connector',
@@ -31,6 +30,7 @@ class MySQLConnection(object):
         self._connector = None
         self._connected = False
         self._status = 1
+        #####____________________________________________________#####
         if args or kwargs:
             l = list(args) + list(kwargs.values())
             if len(l) != 5:
@@ -68,6 +68,7 @@ class MySQLConnection(object):
 
     def commit(self):
         # commit
+
         self._connector.commit()
 
     def disconnect(self):
@@ -75,7 +76,6 @@ class MySQLConnection(object):
         self._connector.close()
         self._status = 1
         self._connected = False
-
 
 def logit(**logs):
     return MySQLConnection(**logs)
