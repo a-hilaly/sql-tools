@@ -128,6 +128,19 @@ def test_elements_postget():
     assert ct[1][0] == 2
     assert ct[1][1] == "kok"
     assert ct[1][2] == '[]'
+    # /!\ this isnt really it place but its a post get treatement
+    # copy table
+    copy_table(db, 'copied_table', tb)
+    ct2 = table_content(db, 'copied_table')
+    assert len(ct2) == 2
+    assert ct2[0][0] == 1
+    assert ct2[0][1] == "kik"
+    assert ct2[0][2] == '[]'
+    assert ct2[1][0] == 2
+    assert ct2[1][1] == "kok"
+    assert ct2[1][2] == '[]'
+    #clear clone
+    #remove_table(db, 'copied_table')
     # remove element
     remove_elements(db, tb, where="field2 = 'kik'")
     # recheck ct
@@ -142,6 +155,7 @@ def test_elements_postget():
     remove_table(db, tb)
     remove_database(db)
     return 1
+
 
 
 def _column_of_matrix(matrix, column):
