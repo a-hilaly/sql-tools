@@ -21,11 +21,15 @@ mysql version: 5.7
 Dev CP
 
 [ 0.4.1 ]
+
 / support :
+
 - documentations
 - support for MySQL 5.5 (Non JSON)
 - support of lower python versions
+
 / features :
+
 - configure option
 - Types and primary / foreign / unique key
 - Grants Class maybe ?
