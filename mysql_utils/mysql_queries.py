@@ -16,6 +16,8 @@ from ._predef_queries import (
     _SELECT_TABLE,
     _USE_DATABASE,
     _DELETE_TABLE,
+    _CREATE_TABLE_LIKE,
+    _INSERT_TABLE_CONTENT,
     _IE_QUERY,
     _DL_QUERY,
     _SL_QUERY,
@@ -130,10 +132,13 @@ def change_field(db, table, field_name, new_field, field_type):
     )
 
 
-def make_table(db, table, **kwargs):
+def make_table(db, table, from_another_table=None, **kwargs):
     """
     Create a table at database with kwargs as fields
     """
+    if from_another_table:
+        execute_only(_CREATE_TABLE_LIKE.format(db, table, from_another_table))
+        return
     cp = kwargs
     for field, _type in kwargs.items():
         if isinstance(_type, Mysql_Type):
@@ -150,7 +155,7 @@ def remove_table(db, table):
 
 def table_content(db, table):
     """
-    return a 2 dimentioanl array cont-aining all table values
+    return a 2 dimentioanl array containing all table values
     """
     #XXX: Substitute of : `select * from table`
     return execute_and_fetch(_SELECT_TABLE.format(db, table))
@@ -167,7 +172,12 @@ def copy_table(db, table, target_table):
     """
     Not Implemented
     """
-    pass
+    make_table(db, table, from_another_table=target_table)
+    execute_only(
+        _INSERT_TABLE_CONTENT.format(
+            db, table, target_table
+        ), commit=True
+    )
 
 
 def add_element(db, table, **kwargs):
