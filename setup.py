@@ -51,7 +51,7 @@ class configure(Command):
 
 setup(
     name='mysql-utils',
-    version='0.3.8',
+    version='0.4.0',
     description='null',
     author='null',
     author_email='0@None.null',
