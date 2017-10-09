@@ -52,9 +52,9 @@ class configure(Command):
 setup(
     name='mysql-utils',
     version='0.4.0',
-    description='null',
-    author='null',
-    author_email='0@None.null',
+    description='Mysql utilities',
+    author='M.A-Hilaly',
+    author_email='hilalyamine@gmail.com',
     cmdclass={'test' : run_tests},
     packages=find_packages(exclude=('tests', 'docs'))
 )
