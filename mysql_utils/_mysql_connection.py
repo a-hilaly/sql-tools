@@ -1,10 +1,8 @@
 import mysql.connector as MSCN
 
 class UnexpectedArguments(Exception):
-    def __init__(self, args_number):
-        Exception.__init__(
-            self, "Unexpected number of arguments : {0}".format(args_number)
-        )
+    def __init__(self):
+        Exception.__init__(self, "Unexpected arguments style")
 
 class MySQLConnection(object):
 
@@ -31,13 +29,10 @@ class MySQLConnection(object):
         self._connected = False
         self._status = 1
         #####____________________________________________________#####
-        if args or kwargs:
-            l = list(args) + list(kwargs.values())
-            if len(l) != 5:
-                raise UnexpectedArguments(l)
-            else:
-                self.load(*args, **kwargs)
-                self.connect(True)
+        if args and kwargs: raise UnexpectedArguments()
+        else:
+            self.load(*args, **kwargs)
+            self.connect(True)
 
     def load(self, host=None, user=None, password=None, use_pure=None,
              raise_on_warnings=None):
