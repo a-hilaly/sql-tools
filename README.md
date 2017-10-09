@@ -1,11 +1,13 @@
-# Mysql-utils [0.3.8]
+# mysql-utils - 0.4.0
 
 Requirements :
 
 - Python 3.6 | Pip
-- Mysql Server or client (Admin client for logging utils)
+- Mysql Server or client
+
 
 ##### Status
+
 
 (Currently tested under ubuntu and OSX systems)
 python version: 3.6.1
@@ -18,14 +20,16 @@ mysql version: 5.7
 
 Dev CP
 
-[V > 0.4.1]
+[ 0.4.1 ]
+/ support :
+- documentations
+- support for MySQL 5.5 (Non JSON)
+- support of lower python versions
+/ features :
+- configure option
 - Types and primary / foreign / unique key
 - Grants Class maybe ?
 - write models and their tests
-- docs
-- support for MySQL 5.5 (Non JSON)
-- configure option
-
 
 ## Table of content
 
@@ -70,3 +74,5 @@ Modeled queries:
 ```
 
 ## Documentation
+
+## Credit
