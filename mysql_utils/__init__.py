@@ -23,7 +23,7 @@ from mysql_utils.mysql_queries import (
     select_optimised,
 )
 
-from types import (
+from .types import (
     INT,
     VARCHAR,
     BOOLEAN,
