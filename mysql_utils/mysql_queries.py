@@ -168,16 +168,25 @@ def table_primary_start(db, table, start):
     return execute_only(_AUTOINCR.format(db, table, start))
 
 
-def copy_table(db, table, target_table):
+def pour_table_in(db, table, totable):
     """
-    Not Implemented
+    Pour table content into another table
+    Tables should have same fields names and types
     """
-    make_table(db, table, from_another_table=target_table)
     execute_only(
         _INSERT_TABLE_CONTENT.format(
-            db, table, target_table
+            db, totable, table
         ), commit=True
     )
+
+
+def copy_table(db, table, target_table, exists=False):
+    """
+    Create a copy of another table
+    """
+    if not exists:
+        make_table(db, table, from_another_table=target_table)
+    pour_table_in(db, target_table, table)
 
 
 def add_element(db, table, **kwargs):

@@ -1,12 +1,11 @@
-from mysql_utils.types.mysql_types import (
-    Mysql_Type,
+from mysql_utils.types.mysql_types import Mysql_Type, NotImplementeD
+from mysql_utils.types import (
     INT,
     VARCHAR,
     BOOLEAN,
     ENUM,
     JSON,
     TIMESTAMP,
-    NotImplementeD
 )
 
 
