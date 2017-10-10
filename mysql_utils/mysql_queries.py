@@ -189,6 +189,7 @@ def copy_table(db, table, target_table, exists=False):
     pour_table_in(db, target_table, table)
 
 
+
 def add_element(db, table, **kwargs):
     """
     add element to table at db
