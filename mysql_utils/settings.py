@@ -17,7 +17,7 @@ def conflogs():
         ENV = os.environ['CI']
         LOGS = extract_settings('ci')
     except:
-        LOGS = extract_settings('local')
+        LOGS = extract_settings('logs')
     for k in LOGS.keys():
         if LOGS[k] in '01':
             LOGS[k] = (LOGS[k] == '1')

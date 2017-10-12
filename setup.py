@@ -30,5 +30,8 @@ setup(
     author='M.A-Hilaly',
     author_email='hilalyamine@gmail.com',
     cmdclass={'test' : run_tests},
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    package_data={'mysql_utils': ['config/conf.ini']},
+    include_package_data=True,
+    zip_safe=False,
 )
