@@ -2,6 +2,7 @@ import os
 import configparser
 from .utils import CONFIG_DIRECTORY
 
+
 def extract_settings(system, config, o=None):
     Config = configparser.ConfigParser()
     conf_dir = "{0}/{1}_conf.ini".format(CONFIG_DIRECTORY, system)
@@ -15,10 +16,10 @@ def extract_settings(system, config, o=None):
             data[k] = (data[k] == '1')
     return data
 
+
 def get_logs(system):
     if 'CI' in list(os.environ.keys()):
-        ENV = os.environ['CI']
-        LOGS = extract_settings(system, 'ci_logs')
+        LOGS = extract_settings(system, 'ci')
     else:
         LOGS = extract_settings(system, 'logs')
     return LOGS

@@ -48,13 +48,13 @@ class SQLBridge(object):
 
     @property
     def credentials(self):
+        cred = list(self._credentials().values())[0:4]
         print("""{0} CREDENTIALS
          - host : {1}
          - port : {2}
          - user : {3}
-         - password : {4}
-         - config : {5}""".format(self._system.upper(), *self._credentials))
-
+         - password : {4}""".format(self._system.upper(),*cred)
+              )
 
     def __init__(self, system):
         self._system = system
@@ -69,11 +69,12 @@ class SQLBridge(object):
 
     def _credentials(self, exclude_nulls=False):
         if not exclude_nulls:
-            return {"host" : self._host,
-                    "port" : self._port,
-                    "user" : self._user,
-                    "password" : self._password,
-                    **self._config}
+            return {
+                "host" : self._host,
+                "port" : self._port,
+                "user" : self._user,
+                "password" : self._password,
+                **self._config}
 
         ncred = {}
         for cred, val in self._credentials(exclude_nulls=False).items():

@@ -20,7 +20,10 @@ from sql_tools.core.queries import (
     select_elements,
     update_element,
     select_optimised,
+    SQ,
 )
+
+print(SQ.CNX.credentials)
 
 from sql_tools.types.datatypes import (
     INT,
