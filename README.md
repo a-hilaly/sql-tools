@@ -23,17 +23,11 @@ Dev CP
 [ 0.0.5 ]
 
 / support :
-
 - documentations
-- support for MySQL 5.5
 - support of lower python versions
-
 / features :
-
-- configure option
 - Types and primary / foreign / unique key
-- Grants Class maybe ?
-- write models and their tests
+- objects model
 
 ## Table of content
 
@@ -46,11 +40,25 @@ Dev CP
 
 ## Installation
 
+At sql-tools directory run:
+```shell
+sudo python3 setup.py install
+```
+
+Run tests using:
+```shell
+sudo python3 setup.py test
+```
 
 ## configuration
 
+```shell
+sql-tools --config mysql -h anotherhost -p newpassword
+```
 
 ## Examples
+
+mysql examples
 
 Simple queries:
 
