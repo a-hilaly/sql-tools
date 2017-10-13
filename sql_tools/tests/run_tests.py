@@ -23,10 +23,10 @@ class TestFail(Exception):
     pass
 
 
-test_modules = ['mysql_utils.tests.test_mysql_types',
-                'mysql_utils.tests.test_mysql_queries',
-                'mysql_utils.tests.test_mysql_loggings',
-                'mysql_utils.tests.test_predef_queries']
+test_modules = ['sql_tools.tests.test_core_io',
+                'sql_tools.tests.test_sql_types',
+                'sql_tools.tests.test_sql_queries',
+                'sql_tools.tests.test_sql_login']
 
 
 Succeeded_Test = "[ OK ] ... {0} succeeded ES:{1} with a total run time of : {2} ms"

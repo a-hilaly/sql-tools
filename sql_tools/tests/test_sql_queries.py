@@ -1,10 +1,9 @@
-from mysql_utils.mysql_queries import (
+from sql_tools.core.queries import (
     version,
     user,
     databases,
     make_database,
     remove_database,
-    use_database,
     tables,
     table_fields,
     table_fields_data,
@@ -23,7 +22,7 @@ from mysql_utils.mysql_queries import (
     select_optimised,
 )
 
-from mysql_utils.types import (
+from sql_tools.types.datatypes import (
     INT,
     VARCHAR,
     BOOLEAN,
@@ -157,13 +156,10 @@ def test_elements_postget():
     return 1
 
 
-
-def _column_of_matrix(matrix, column):
-    return [i[column] for i in matrix]
-
-
 def test_selections_advanced():
     #init
+    def _column_of_matrix(matrix, column):
+        return [i[column] for i in matrix]
     make_database(db)
     _tb = tables(db)
     make_table(db,

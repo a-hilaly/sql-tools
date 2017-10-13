@@ -12,13 +12,13 @@ class NotImplementeD(Exception):
     pass
 
 
-class Mysql_Type(object):
+class SQLTypes(object):
 
     __slots__ = ['_type', '_init']
 
     def __new__(cls, *args, **kwargs):
         nm = cls.__name__
-        is_type = True in [nm in e for e in TYPES] + [nm == 'Mysql_Type']
+        is_type = True in [nm in e for e in TYPES] + [nm == 'SQLTypes']
         if not is_type:
             raise UnknownType()
         obj = object.__new__(cls)

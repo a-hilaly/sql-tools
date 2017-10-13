@@ -1,4 +1,4 @@
-from .ftypes import (
+from .datatypes import (
     INT,
     VARCHAR,
     BOOLEAN,

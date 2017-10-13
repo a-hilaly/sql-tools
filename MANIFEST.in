@@ -1,1 +1,1 @@
-include mysql_utils/config/conf.ini
+include sql_tools/config/mysql_conf.ini

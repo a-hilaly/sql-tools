@@ -19,19 +19,19 @@ class run_tests(Command):
         pass
 
     def run(self):
-        from mysql_utils.tests.run_tests import run_all_tests
+        from sql_tools.tests.run_tests import run_all_tests
         run_all_tests()
 
 
 setup(
-    name='mysql-utils',
+    name='sql_tools',
     version='0.4.0',
     description='Mysql utilities',
     author='M.A-Hilaly',
     author_email='hilalyamine@gmail.com',
     cmdclass={'test' : run_tests},
-    packages=find_packages(exclude=('docs')),
-    package_data={'mysql_utils': ['config/conf.ini']},
+    packages=find_packages(),
+    package_data={'sql_tools': ['config/mysql_conf.ini']},
     include_package_data=True,
     zip_safe=False,
 )

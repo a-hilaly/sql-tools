@@ -1,4 +1,4 @@
-from .mysql_types import Mysql_Type
+from .sql_types import SQLTypes
 
 _type = lambda obj : obj.__class__.__name__
 _listify = lambda l : ''.join([str(l[0])] + [', {0}'.format(i) for i in l[1::]])
@@ -10,8 +10,7 @@ AUTO_INCREMENT = " AUTO_INCREMENT"
 ON_UPDATE = " ON UPDATE {0}"
 CURRENT_TIMESTAMP =  "CURRENT_TIMESTAMP"
 
-
-class INT(Mysql_Type):
+class INT(SQLTypes):
 
     __slots__ = ['_type', '_init',
                  '_size', '_not_null', '_default', '_auto_incr']
@@ -21,7 +20,7 @@ class INT(Mysql_Type):
         if default and auto_increment:
             raise Exception()
 
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._size = size
         self._not_null = not_null
@@ -39,12 +38,12 @@ class INT(Mysql_Type):
         return v
 
 
-class VARCHAR(Mysql_Type):
+class VARCHAR(SQLTypes):
 
     __slots__ = ['_type', '_init', '_size', '_not_null', '_default']
 
     def __init__(self, size=None, not_null=False, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._size = size
         self._not_null = not_null
@@ -59,12 +58,12 @@ class VARCHAR(Mysql_Type):
         return v
 
 
-class BOOLEAN(Mysql_Type):
+class BOOLEAN(SQLTypes):
 
     __slots__ = ['_type', '_init', '_not_null', '_default']
 
     def __init__(self, not_null=False, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._not_null = not_null
         self._default = default
@@ -78,12 +77,12 @@ class BOOLEAN(Mysql_Type):
         return v
 
 
-class ENUM(Mysql_Type):
+class ENUM(SQLTypes):
 
     __slots__ = ['_type', '_init', '_enum_ct', '_default']
 
     def __init__(self, enum_ct=None, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._enum_ct = enum_ct
         self._default = default
@@ -99,12 +98,12 @@ class ENUM(Mysql_Type):
         return v
 
 
-class JSON(Mysql_Type):
+class JSON(SQLTypes):
 
     __slots__ = ['_type', '_init', '_default']
 
     def __init__(self, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._default = default
 
@@ -115,12 +114,12 @@ class JSON(Mysql_Type):
         return v
 
 
-class TIMESTAMP(Mysql_Type):
+class TIMESTAMP(SQLTypes):
 
     __slots__ = ['_type', '_init', '_default', '_on_update']
 
     def __init__(self, default=False, on_update=False):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._default = default
         self._on_update = on_update

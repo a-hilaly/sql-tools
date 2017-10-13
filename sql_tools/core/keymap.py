@@ -1,4 +1,4 @@
-from .utils import str_listify, tuple_stringify
+from sql_tools.utils import str_listify, tuple_stringify
 
 
 #MYSQL VU
