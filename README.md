@@ -1,4 +1,4 @@
-# sql-utils - 0.0.4
+# sql-utils - 0.0.5
 
 Requirements :
 

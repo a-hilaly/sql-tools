@@ -26,7 +26,7 @@ class run_tests(Command):
 setup(
     name='sql_tools',
     version='0.0.4',
-    description='Mysql utilities',
+    description='sql utilities',
     author='M.A-Hilaly',
     author_email='hilalyamine@gmail.com',
     cmdclass={'test' : run_tests},
