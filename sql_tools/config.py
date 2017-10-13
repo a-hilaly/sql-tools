@@ -18,7 +18,7 @@ def extract_settings(system, config, o=None):
 def get_logs(system):
     if 'CI' in list(os.environ.keys()):
         ENV = os.environ['CI']
-        LOGS = extract_settings(system, 'ci.logs')
+        LOGS = extract_settings(system, 'ci_logs')
     else:
         LOGS = extract_settings(system, 'logs')
     return LOGS
