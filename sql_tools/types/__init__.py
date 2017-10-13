@@ -1,4 +1,4 @@
-from .mysql_types import (
+from .datatypes import (
     INT,
     VARCHAR,
     BOOLEAN,

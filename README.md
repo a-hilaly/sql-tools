@@ -1,4 +1,4 @@
-# mysql-utils - 0.4.0
+# sql-utils - 0.0.4
 
 Requirements :
 
@@ -20,12 +20,12 @@ mysql version: 5.7
 
 Dev CP
 
-[ 0.4.1 ]
+[ 0.0.5 ]
 
 / support :
 
 - documentations
-- support for MySQL 5.5 (Non JSON)
+- support for MySQL 5.5
 - support of lower python versions
 
 / features :
@@ -55,26 +55,18 @@ Dev CP
 Simple queries:
 
 ```python
->>> from mysql_utils.queries import make_database, show_databases
->>> make_database('asample')
->>> print(show_databases())
- ['mysql', 'sys', 'asample'] # You might have other databases here
+
 ```
 
 Advanced queries:
 
 ```python
->>> from mysql_utils.models import Database
->>> Database('mysql', 'asample')
- True, False
->>> Database('asample').create(force=False)
->>> Database('asample')
- True, True
+
 ```
 
 Modeled queries:
 
-```
+```python
 ```
 
 ## Documentation

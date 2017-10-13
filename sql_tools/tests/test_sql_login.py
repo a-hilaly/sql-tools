@@ -1,4 +1,4 @@
-from mysql_utils.logging import (
+from sql_tools.core.loginq import (
     set_user_grants,
     revoke_user_grants,
     user_grants,
@@ -14,7 +14,7 @@ Host = "testhost"
 Password = "--"
 
 
-def test_mysql_users_basics():
+def test_users_basics():
     # init
     # CREATE USER
     create_user(User, Host, Password)
@@ -29,7 +29,7 @@ def test_mysql_users_basics():
     return 1
 
 
-def test_mysql_users_locks():
+def test_users_locks():
     # init
     create_user(User, Host, Password)
     # LOCK USER
@@ -46,7 +46,7 @@ def test_mysql_users_locks():
     return 1
 
 
-def test_mysql_users_grants():
+def test_users_grants():
     # init
     import os
     if 'CI' in list(os.environ.keys()):
@@ -72,6 +72,6 @@ def test_mysql_users_grants():
     return 1
 
 
-__all__ = [test_mysql_users_basics,
-           test_mysql_users_locks,
-           test_mysql_users_grants]
+__all__ = [test_users_basics,
+           test_users_locks,
+           test_users_grants]

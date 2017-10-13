@@ -1,3 +1,8 @@
+from .sql_types import SQLTypes
+
+_type = lambda obj : obj.__class__.__name__
+_listify = lambda l : ''.join([str(l[0])] + [', {0}'.format(i) for i in l[1::]])
+
 NOT_NULL = " NOT NULL"
 DEFAULT = " DEFAULT {0}"
 DEFAULT_STR = " DEFAULT '{0}'"
@@ -5,64 +10,7 @@ AUTO_INCREMENT = " AUTO_INCREMENT"
 ON_UPDATE = " ON UPDATE {0}"
 CURRENT_TIMESTAMP =  "CURRENT_TIMESTAMP"
 
-_listify = lambda l : ''.join([str(l[0])] + [', {0}'.format(i) for i in l[1::]])
-_type = lambda obj : obj.__class__.__name__
-
-TYPES = [('int', 'INT'),
-         ('varchar', 'VARCHAR'),
-         ('boolean', 'BOOLEAN'),
-         ('json', 'JSON'),
-         ('timestamp', 'TIMESTAMP'),
-         ('enum', 'ENUM')]
-
-
-class NotImplementeD(Exception):
-    pass
-
-
-class Mysql_Type(object):
-
-    __slots__ = ['_type', '_init']
-
-    def __new__(cls, *args, **kwargs):
-        nm = cls.__name__
-        is_type = True in [nm in e for e in TYPES] + [nm == 'Mysql_Type']
-        if not is_type:
-            raise Exception()
-        obj = object.__new__(cls)
-        obj.__init__(*args, **kwargs)
-        return obj
-
-    def __init__(self, t):
-        self._type = t
-        self._init = None
-
-    def __str__(self):
-        return self._printf()
-
-    __repr__ = __str__
-
-    @classmethod
-    def decode(cls, obj):
-        if not isinstance(obj, cls):
-            raise Exception()
-        return obj.printf
-
-    def _printf(self):
-        """
-        """
-        raise NotImplementeD()
-
-    @staticmethod
-    def eval(obj):
-        return obj.printf
-
-    @property
-    def printf(self):
-        return self._printf()
-
-
-class INT(Mysql_Type):
+class INT(SQLTypes):
 
     __slots__ = ['_type', '_init',
                  '_size', '_not_null', '_default', '_auto_incr']
@@ -72,7 +20,7 @@ class INT(Mysql_Type):
         if default and auto_increment:
             raise Exception()
 
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._size = size
         self._not_null = not_null
@@ -90,12 +38,12 @@ class INT(Mysql_Type):
         return v
 
 
-class VARCHAR(Mysql_Type):
+class VARCHAR(SQLTypes):
 
     __slots__ = ['_type', '_init', '_size', '_not_null', '_default']
 
     def __init__(self, size=None, not_null=False, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._size = size
         self._not_null = not_null
@@ -110,12 +58,12 @@ class VARCHAR(Mysql_Type):
         return v
 
 
-class BOOLEAN(Mysql_Type):
+class BOOLEAN(SQLTypes):
 
     __slots__ = ['_type', '_init', '_not_null', '_default']
 
     def __init__(self, not_null=False, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._not_null = not_null
         self._default = default
@@ -129,12 +77,12 @@ class BOOLEAN(Mysql_Type):
         return v
 
 
-class ENUM(Mysql_Type):
+class ENUM(SQLTypes):
 
     __slots__ = ['_type', '_init', '_enum_ct', '_default']
 
     def __init__(self, enum_ct=None, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._enum_ct = enum_ct
         self._default = default
@@ -150,12 +98,12 @@ class ENUM(Mysql_Type):
         return v
 
 
-class JSON(Mysql_Type):
+class JSON(SQLTypes):
 
     __slots__ = ['_type', '_init', '_default']
 
     def __init__(self, default=None):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._default = default
 
@@ -166,12 +114,12 @@ class JSON(Mysql_Type):
         return v
 
 
-class TIMESTAMP(Mysql_Type):
+class TIMESTAMP(SQLTypes):
 
     __slots__ = ['_type', '_init', '_default', '_on_update']
 
     def __init__(self, default=False, on_update=False):
-        Mysql_Type.__init__(self, _type(self))
+        SQLTypes.__init__(self, _type(self))
         self._init = True
         self._default = default
         self._on_update = on_update

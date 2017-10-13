@@ -1,13 +1,11 @@
 import os
 import configparser
 
-MYSQL_UTILS_PATH = os.path.dirname(os.path.abspath(__file__))
-CONFIG_FULL_PATH = os.path.join(
-    os.path.dirname(
-        os.path.dirname(__file__)
-    ), 'conf.ini'
-)
+CONFIG_DIRECTORY = "{0}/{1}".format(os.path.abspath(
+                       os.path.dirname(__file__)), 'config')
 
+
+listify = lambda l : ''.join([str(l[0])] + [', {0}'.format(i) for i in l[1::]])
 
 def str_listify(*a, re=None):
     if not a:
@@ -55,7 +53,7 @@ def _tuplik(e, indexes):
         return R
 
 
-def _refetch_filter(indexes):
+def refetch_filter(indexes):
     """
     Matrix (2Dlist) raws [indexes]
     """
@@ -72,3 +70,14 @@ def _refetch_filter(indexes):
             return ress
         return wrap_args
     return wrap_func
+
+
+def kwgs(grants=None, on_db=None, on_tb=None):
+    g, d, t = grants, on_db, on_tb
+    if grants == "*":
+        g = "ALL PRIVILEGES"
+    if not on_db:
+        d = "*"
+    if not on_tb:
+        t = "*"
+    return g, d, t
