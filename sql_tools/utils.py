@@ -1,5 +1,4 @@
 import os
-import configparser
 
 CONFIG_DIRECTORY = "{0}/{1}".format(os.path.abspath(
                        os.path.dirname(__file__)), 'config')

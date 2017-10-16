@@ -1,6 +1,7 @@
-from .sql_io import SQLio
+from sql_tools.core.sql_io import SQLio
 from sql_tools.utils import refetch_filter
-from .keymap import (
+from sql_tools.types.sql_types import SQLTypes
+from sql_tools.core.keymap import (
     _VERSION,
     _USER,
     _USE_DATABASE,
@@ -35,32 +36,37 @@ from .keymap import (
 )
 
 class SimpleSQLModel(SQLio):
+    """
+    Simpliest SQL Model for database exploit
+
+    """
 
     def __init__(self, system):
         SQLio.__init__(self, system)
 
-    @property
+
     def system(self):
         """
         Return system type
         """
         return self.CNX._system
 
+
     @refetch_filter([0])
-    @property
     def version(self):
         """
         Return system version
         """
         return self.execute_and_fetch(_VERSION)
 
+
     @refetch_filter([0])
-    @property
     def user(self):
         """
         Return session user
         """
         return self.execute_and_fetch(_USER)
+
 
     @refetch_filter([0])
     def databases(self):
@@ -69,11 +75,13 @@ class SimpleSQLModel(SQLio):
         """
         return self.execute_and_fetch(_SHOW_DATABASES)
 
+
     def make_database(self, db):
         """
         Create database
         """
         self.execute_only(_CREATE_DATABASE.format(db))
+
 
     def remove_database(self, db):
         """
@@ -81,11 +89,13 @@ class SimpleSQLModel(SQLio):
         """
         self.execute_only(_DELETE_DATABASE.format(db))
 
+
     @refetch_filter([0])
     def tables(self, db):
         """
         """
         return self.execute_and_fetch(_SHOW_TABLES.format(db))
+
 
     @refetch_filter([0])
     def table_fields(self, db, table):
@@ -94,21 +104,24 @@ class SimpleSQLModel(SQLio):
         """
         return self.execute_and_fetch(_TABLE_FIELDS.format(db, table))
 
+
     def table_fields_data(self, db, table):
         """
         Return a list of table fields ( All data )
         """
         return self.execute_and_fetch(_TABLE_FIELDS.format(db, table))
 
+
     def add_field(self, db, table, field_name, field_type):
         """
         Add field to table at db
         """
-        if isinstance(field_type, SQLType):
-            field_type = SQLType.eval(field_type)
+        if isinstance(field_type, SQLTypes):
+            field_type = SQLTypes.eval(field_type)
         self.execute_only(
             _ADD_COLUMN.format(db, table, field_name, field_type)
         )
+
 
     def remove_field(self, db, table, field_name):
         """
@@ -121,7 +134,7 @@ class SimpleSQLModel(SQLio):
         """
         Change field in table at db
         """
-        if isinstance(field_type, SQLType):
+        if isinstance(field_type, SQLTypes):
             field_type = field_type.printf
         self.execute_only(
             _CHANGE_COLUMN.format(
@@ -139,8 +152,8 @@ class SimpleSQLModel(SQLio):
             return
         cp = kwargs
         for field, _type in kwargs.items():
-            if isinstance(_type, SQLType):
-                cp[field] = SQLType.eval(_type)
+            if isinstance(_type, SQLTypes):
+                cp[field] = SQLTypes.eval(_type)
         self.execute_only(_CT_QUERY(db, table, **cp))
 
 

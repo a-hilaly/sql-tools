@@ -7,4 +7,4 @@ from sql_tools.types import (
     ENUM,
 )
 
-from .tools import MYSQL
+from .mysql import MYSQL
