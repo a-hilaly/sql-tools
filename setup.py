@@ -25,12 +25,12 @@ class run_tests(Command):
 
 setup(
     name='sql_tools',
-    version='0.0.4',
-    description='sql utilities',
+    version='0.0.5',
+    description='Mysql utilities',
     author='M.A-Hilaly',
     author_email='hilalyamine@gmail.com',
     cmdclass={'test' : run_tests},
-    packages=find_packages(),
+    packages=find_packages(exclude=('docs', '.circleci')),
     package_data={'sql_tools': ['config/mysql_conf.ini']},
     include_package_data=True,
     zip_safe=False,
