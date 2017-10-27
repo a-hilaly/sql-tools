@@ -19,6 +19,7 @@ class run_tests(Command):
         pass
 
     def run(self):
+        #TODO: Implemet tsetse
         from sql_tools.tests.run_tests import run_all_tests
         run_all_tests()
 
