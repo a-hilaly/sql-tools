@@ -24,7 +24,6 @@ class run_tests(Command):
         from sql_tools.tests.run_tests import run_all_tests
         run_all_tests()
 
-
 setup(
     name='sql_tools',
     version='0.0.5',
