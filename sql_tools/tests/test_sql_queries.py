@@ -196,7 +196,7 @@ def test_selections_advanced():
     selection = select_optimised(db,
                                  tb,
                                  with_limit=2,
-                                 selection="*",
+                                 where="1=1",
                                  kind="ASC",
                                  sorted_by="field1")
     assert _column_of_matrix(selection, 0) == [1, 2]

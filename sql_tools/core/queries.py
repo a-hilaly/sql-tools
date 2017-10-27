@@ -206,7 +206,7 @@ def remove_elements(db, table, with_limit=-1, where=None):
     )
 
 
-def select_elements(db, table, with_limit=-1, selection=None, where=None):
+def select_elements(db, table, with_limit=-1, selection="*", where=None):
     """
     Select elements that satisfy kwargs from table at db
     """
@@ -229,12 +229,12 @@ def update_element(db, table, with_limit=-1, sets=None, where=None):
 
 
 def select_optimised(db, table, with_limit=1, selection="*", kind="ASC",
-                     sorted_by=None):
+                     sorted_by=None, where=None):
     """
     Select optimised
     """
     return SQ.execute_and_fetch(
         _SELECT_OPTI.format(
-            selection, db, table, sorted_by, kind, with_limit
+            selection, db, table, where, sorted_by, kind, with_limit
         )
     )

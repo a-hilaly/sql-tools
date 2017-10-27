@@ -61,8 +61,9 @@ ORDER BY {3} {4}
 """
 _SELECT_OPTI = """SELECT {0}
 FROM {1}.{2}
-ORDER BY {3} {4}
-LIMIT {5}"""
+WHERE {3}
+ORDER BY {4} {5}
+LIMIT {6}"""
 
 ## Users [ CREATE | DROP | LOCK | UNLOCK ]
 

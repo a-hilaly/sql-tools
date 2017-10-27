@@ -218,7 +218,7 @@ class SimpleSQLModel(SQLio):
         )
 
 
-    def select_elements(self, db, table, with_limit=-1, selection=None,
+    def select_elements(self, db, table, with_limit=-1, selection="*",
                         where=None):
         """
         Select elements that satisfy kwargs from table at db
@@ -242,13 +242,13 @@ class SimpleSQLModel(SQLio):
 
 
     def select_optimised(self, db, table, with_limit=1, selection="*", kind="ASC",
-                         sorted_by=None):
+                         sorted_by=None, where=None):
         """
         Select optimised
         """
         return self.execute_and_fetch(
             _SELECT_OPTI.format(
-                selection, db, table, sorted_by, kind, with_limit
+                selection, db, table, where, sorted_by, kind, with_limit
             )
         )
 
