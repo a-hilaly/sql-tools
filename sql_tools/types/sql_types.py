@@ -1,3 +1,5 @@
+#
+
 TYPES = [('int', 'INT'),
          ('varchar', 'VARCHAR'),
          ('boolean', 'BOOLEAN'),
