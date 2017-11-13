@@ -1,5 +1,7 @@
 import os
 
+
+PROJECT_DIRECTORY = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 CONFIG_DIRECTORY = "{0}/{1}".format(os.path.abspath(
                        os.path.dirname(__file__)), 'config')
 

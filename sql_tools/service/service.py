@@ -1,12 +1,14 @@
 import os
+from sql_tools.utils import PROJECT_DIRECTORY
 
+api_path = "{0}/{1}".format(PROJECT_DIRECTORY, "sql_tools_api.py")
 
-def SQLtools_API(object):
+class SQLtools_API(object):
 
-    def __init__(self):
+    def __init__(self, sys, path):
         pass
 
-    def command_server(command):
+    def command_server(self, command):
         """
         0 : Start
         1 : Stop
